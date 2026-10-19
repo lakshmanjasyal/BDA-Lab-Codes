@@ -1,0 +1,12 @@
+numbers <- c(4,9,16,29,36)
+print(numbers)
+cat("mini",min(numbers),"\n")
+cat("Max",max(numbers),"\n")
+cat("Sum",sum(numbers),"\n")
+cat("Average/Mean",mean(numbers),"\n")
+cat("Length: ",length(numbers),"\n")
+cat("Sort asc: ",sort(numbers),"\n")
+cat("Sort dsc: ",sort(numbers,decreasing=TRUE),"\n")
+print(as.integer(sqrt(numbers)))
+
+print(numbers*2)

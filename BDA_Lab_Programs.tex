@@ -1,0 +1,285 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{titlesec}
+
+\definecolor{codegreen}{rgb}{0,0.45,0}
+\definecolor{codegray}{rgb}{0.35,0.35,0.35}
+\definecolor{codepurple}{rgb}{0.45,0,0.65}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstdefinestyle{program}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    keepspaces=true,
+    numbers=left,
+    numbersep=8pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    frame=single,
+    rulecolor=\color{black!35}
+}
+
+\lstdefinelanguage{R}{
+    morekeywords={function,if,else,for,while,repeat,in,next,break,
+                  TRUE,FALSE,NA,NULL,library,return},
+    sensitive=true
+}
+
+\lstdefinelanguage{Python}{
+    morekeywords={and,as,assert,break,class,continue,def,del,elif,else,
+                  except,False,finally,for,from,global,if,import,in,is,
+                  lambda,None,not,or,pass,raise,return,True,try,while,
+                  with,yield},
+    sensitive=true
+}
+
+\lstset{style=program}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\onehalfspacing
+
+\titleformat{\section}
+  {\bfseries\fontsize{16}{19}\selectfont}
+  {\thesection.}{0.5em}{}
+\titleformat{\subsection}
+  {\bfseries\fontsize{16}{19}\selectfont}
+  {}{0em}{}
+
+\newcommand{\labheader}[2]{%
+    \noindent\textit{\fontsize{11}{13}\selectfont\textbf{EXPERIMENT NO:}} #1
+    \hfill
+    \textit{\fontsize{11}{13}\selectfont\textbf{DATE:}} #2
+    \par\vspace{1.5cm}
+}
+
+\newcommand{\labtitle}[1]{%
+    \begin{center}
+        {\bfseries\fontsize{16}{19}\selectfont #1}
+    \end{center}
+    \vspace{0.7cm}
+}
+
+\newcommand{\labheading}[1]{%
+    \subsection*{#1}
+    \vspace{0.15cm}
+}
+
+\newcommand{\cycleheading}[1]{%
+    \clearpage
+    \begin{center}
+        {\bfseries\fontsize{16}{19}\selectfont CYCLE #1}
+    \end{center}
+    \vspace{0.7cm}
+}
+
+\newcommand{\experiment}[8]{%
+    \clearpage
+    \labheader{#1}{\today}
+    \labtitle{#2}
+
+    \labheading{AIM}
+    {\fontsize{12}{15}\selectfont #3\par}
+
+    \labheading{THEORY}
+    {\fontsize{12}{15}\selectfont #4\par}
+
+    \labheading{ALGORITHM}
+    {\fontsize{12}{15}\selectfont
+    \begin{enumerate}
+        #5
+    \end{enumerate}
+    }
+
+    \labheading{PROGRAM}
+    \lstinputlisting[language=#7]{#6}
+
+    \labheading{OUTPUT}
+    {\fontsize{12}{15}\selectfont #8\par}
+
+    \labheading{RESULT}
+    {\fontsize{12}{15}\selectfont The program was executed successfully and the required result was obtained.\par}
+}
+
+\begin{document}
+
+\cycleheading{I}
+
+\experiment{1}
+{Numerical Operations}
+{To perform basic numerical operations on a vector using R.}
+{R provides built-in functions for statistical calculations, sorting, mathematical transformations, and vector arithmetic.}
+{
+    \item Create a numeric vector.
+    \item Find the minimum, maximum, sum, mean, and length.
+    \item Sort the vector in ascending and descending order.
+    \item Calculate square roots and multiply each element by two.
+}
+{numerical_operations.R}
+{R}
+{The requested numerical statistics and transformed vectors are displayed.}
+
+\experiment{2}
+{Matrix Operations}
+{To perform arithmetic and algebraic operations on matrices using R.}
+{R supports element-wise arithmetic, matrix multiplication, transpose, inverse, identity matrix construction, and determinant calculation.}
+{
+    \item Create two matrices.
+    \item Perform addition, subtraction, multiplication, and division.
+    \item Perform floor division and matrix multiplication.
+    \item Find the transpose, inverse, identity matrix, and determinant.
+}
+{matrix_operations.R}
+{R}
+{The results of all matrix operations are displayed.}
+
+\experiment{3}
+{Data Preprocessing}
+{To handle missing values and normalize numerical attributes in the Iris dataset.}
+{Data preprocessing includes identifying missing values, imputing missing values, and scaling attributes. Min--max normalization maps values to the interval \([0,1]\).}
+{
+    \item Load the Iris dataset.
+    \item Introduce and identify missing values.
+    \item Replace missing values with the mean.
+    \item Normalize the numerical columns using min--max normalization.
+}
+{data_preprocessing_op.R}
+{R}
+{The cleaned and normalized Iris data frame is displayed.}
+
+\cycleheading{II}
+
+\experiment{4}
+{Linear Regression}
+{To model the relationship between weight and height using simple linear regression.}
+{Simple linear regression estimates a straight-line relationship \(y=b_0+b_1x\), where \(b_0\) is the intercept and \(b_1\) is the slope.}
+{
+    \item Generate a random weight--height data frame.
+    \item Fit a linear regression model.
+    \item Display the estimated regression equation.
+    \item Plot the observations and fitted regression line.
+    \item Predict height for a new weight value.
+}
+{Linear_Regression.R}
+{R}
+{The regression equation, fitted plot, and prediction are produced.}
+
+\experiment{5}
+{K-Means Clustering}
+{To group Iris observations into three clusters using the K-Means algorithm.}
+{K-Means assigns observations to the nearest centroid and repeatedly updates centroids until the assignments converge.}
+{
+    \item Load the first four attributes of the Iris dataset.
+    \item Set the number of clusters to three.
+    \item Run K-Means with multiple random starts.
+    \item Display the cluster summary and plot the observations with centroids.
+}
+{K_Means.R}
+{R}
+{The K-Means summary and cluster plot are generated.}
+
+\experiment{6}
+{KNN Classification}
+{To classify breast cancer observations using the K-Nearest Neighbors algorithm.}
+{KNN classifies a test observation using the majority class among its \(k\) nearest training observations. Feature normalization and a confusion matrix are used to evaluate the predictions.}
+{
+    \item Load and clean the breast cancer dataset.
+    \item Convert feature columns to numeric values and normalize them.
+    \item Split the data into training and testing sets.
+    \item Apply KNN with \(k=5\).
+    \item Calculate accuracy for multiple values of \(k\).
+    \item Display the plots and confusion matrix.
+}
+{KNN.R}
+{R}
+{The predicted classes, accuracy plot, class distribution, and confusion matrix are displayed.}
+
+\experiment{7}
+{Market Basket Analysis}
+{To find frequent itemsets and association rules from transaction data.}
+{The Apriori algorithm identifies itemsets whose support is above a minimum threshold and generates rules satisfying the required confidence threshold. Lift measures the strength of an association.}
+{
+    \item Define the transaction database.
+    \item Set the minimum support and confidence.
+    \item Generate candidate itemsets and calculate support.
+    \item Retain frequent itemsets.
+    \item Generate rules and calculate support, confidence, and lift.
+    \item Plot itemset support, rule confidence, and rule lift.
+}
+{apriori.R}
+{R}
+{Frequent itemsets, association rules, and their plots are produced.}
+
+\cycleheading{III}
+
+\experiment{8}
+{RDD Creation Using Parallelization}
+{To create an RDD from a list, inspect its partitions, and perform a map transformation.}
+{An RDD is a distributed, fault-tolerant collection. The \texttt{parallelize} method distributes local data across a specified number of partitions.}
+{
+    \item Create a Spark context.
+    \item Parallelize a list into four partitions.
+    \item Display the number and contents of the partitions.
+    \item Square every element using \texttt{map}.
+    \item Collect and display the result.
+}
+{rdd_parallelize.py}
+{Python}
+{The number of partitions, partition contents, and squared values are displayed.}
+
+\experiment{9}
+{RDD Creation from an External File}
+{To read an external text file into an RDD and count its lines.}
+{The Spark \texttt{textFile} method creates an RDD whose elements are the lines of a text file. RDD actions such as \texttt{collect} and \texttt{count} retrieve results.}
+{
+    \item Create a Spark context.
+    \item Read \texttt{input.txt} as an RDD.
+    \item Collect and display all lines.
+    \item Count and display the number of lines.
+    \item Stop the Spark context.
+}
+{read_file_rdd.py}
+{Python}
+{The contents of the external file and the total number of lines are displayed.}
+
+\experiment{10}
+{PySpark DataFrame Operations}
+{To read an Iris CSV file into a PySpark DataFrame and perform queries on it.}
+{A Spark DataFrame is a distributed table with named columns. Schema inference detects data types, while DataFrame filters express relational queries.}
+{
+    \item Create a Spark session.
+    \item Read the CSV file with a header and inferred schema.
+    \item Print the schema and display rows.
+    \item Apply AND, OR, and NOT filter conditions.
+    \item Collect a matching row and print its fields.
+}
+{pyspark5.py}
+{Python}
+{The inferred schema, filtered rows, and selected row fields are displayed.}
+
+\experiment{11}
+{Word Count Using MapReduce}
+{To count words in a text file using Spark transformations and actions.}
+{The MapReduce pattern maps each word to a key--value pair \((word,1)\), then reduces values with the same key by addition.}
+{
+    \item Create a Spark context and read the input file.
+    \item Remove punctuation and convert text to lowercase.
+    \item Split lines into words.
+    \item Map each word to \((word,1)\).
+    \item Reduce by key and collect the word counts.
+}
+{word_count.py}
+{Python}
+{The cleaned word-count results are displayed.}
+
+\end{document}
